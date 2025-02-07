@@ -1,7 +1,9 @@
 <script lang="ts" setup>
+  import { computed } from 'vue'
+  import NextHoursCard from '@components/NextHoursCard.vue'
+
   import type { PropType } from 'vue'
-  import type { CurrentData } from '@/types'
-  import type { WeatherData } from '@/types'
+  import type { CurrentData, WeatherData, HourData } from '@/types'
 
   const props = defineProps({
     weatherData: {
@@ -10,7 +12,7 @@
     },
   })
 
-  const currentData: CurrentData[] = [
+  const currentData = computed<CurrentData[]>(() => [
     {
       iconName: 'wi-day-sunny-overcast',
       value: props.weatherData?.weather ?? 'null',
@@ -24,7 +26,11 @@
       value: `${props.weatherData?.temperature} °C`,
     },
     { iconName: 'bi-wind', value: `${props.weatherData?.windspeed} Km/h` },
-  ]
+  ])
+
+  const nextHours = computed<HourData[]>(
+    () => props.weatherData?.currentHours ?? []
+  )
 </script>
 
 <template>
@@ -43,7 +49,13 @@
       <div
         class="scrollbar-custom flex h-full w-full items-center gap-2 overflow-auto"
       >
-        Hours.
+        <NextHoursCard
+          v-for="(hour, index) in nextHours"
+          :key="index"
+          :datetime="hour.datetime"
+          :temperature="hour.temp"
+          :rain-probability="hour.precipprob"
+        />
       </div>
     </div>
   </article>

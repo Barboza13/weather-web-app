@@ -7,6 +7,12 @@
 
   const handleSubmit = (e: Event) => {
     e.preventDefault()
+
+    if (newLocation.value === '') {
+      alert("The new location can't empty.")
+      return
+    }
+
     emit('changeLocation', newLocation.value)
     newLocation.value = ''
   }

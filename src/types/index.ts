@@ -8,7 +8,7 @@ export type WeatherData = {
 
 export type HourData = {
   datetime: string
-  conditions: string
+  precipprob: number
   temp: number
 }
 

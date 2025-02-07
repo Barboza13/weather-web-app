@@ -49,7 +49,7 @@ class Weather {
         weather: json.currentConditions.conditions,
         currentHours: json.days[0].hours.map((hour: any) => ({
           datetime: hour.datetime,
-          conditions: hour.conditions,
+          precipprob: hour.precipprob,
           temp: hour.temp,
         })),
       })
