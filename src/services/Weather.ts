@@ -12,28 +12,23 @@ class Weather {
 
   /**
    * Get weather data.
-   * @returns weatherData.
+   * @returns {WeatherData} weather data.
    */
   getWeatherData(): WeatherData {
     return this.weatherData
   }
 
   /**
-   * Set weather data.
-   * @param weatherData
-   */
-  setWeatherData(weatherData: WeatherData): void {
-    this.weatherData = weatherData
-  }
-
-  /**
-   * Fetch Weather Data.
+   * Fetch weather data.
    * @param location
-   * @returns WeatherData[] | null
    */
-  async fetchWeatherData(location: string): Promise<void> {
+  async fetchWeatherData(location: string | null): Promise<void> {
+    if (!location) alert('¡No se pudo obtener tu ubicacion!')
+
     try {
-      const response = await fetch(`${API_URL}/${location}?key=${API_KEY}`)
+      const response = await fetch(
+        `${API_URL}/${location}?unitGroup=metric&key=${API_KEY}`
+      )
 
       if (!response.ok) {
         const json = await response.json()
@@ -42,7 +37,7 @@ class Weather {
 
       const json = await response.json()
 
-      this.setWeatherData({
+      this.weatherData = {
         temperature: json.currentConditions.temp,
         windspeed: json.currentConditions.windspeed,
         rainProbability: json.currentConditions.precipprob,
@@ -52,7 +47,7 @@ class Weather {
           precipprob: hour.precipprob,
           temp: hour.temp,
         })),
-      })
+      }
     } catch (error) {
       console.error('Error: ', error)
     }

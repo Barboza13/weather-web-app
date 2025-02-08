@@ -4,13 +4,23 @@
   import CurrentDataCard from '@components/CurrentDataCard.vue'
   import WeatherMap from '@components/WeatherMap.vue'
   import Weather from '@services/Weather.ts'
+  import getLocalLocation from '@modules/getLocalLocation.ts'
 
   import type { Ref } from 'vue'
   import type { WeatherData } from '@/types'
 
   const weather = new Weather()
-  const location: Ref<string> = ref('London')
+  const location: Ref<string | null> = ref(null)
   const weatherData: Ref<WeatherData | null> = ref(null)
+
+  const getLocation = async () => {
+    try {
+      const { latitude, longitude } = await getLocalLocation()
+      location.value = `${latitude}, ${longitude}`
+    } catch (error) {
+      console.error(error) // Then handle the error.
+    }
+  }
 
   const changeLocation = (newLocation: string): string =>
     (location.value = newLocation)
@@ -21,8 +31,12 @@
   })
 
   onMounted(async () => {
-    await weather.fetchWeatherData(location.value)
-    weatherData.value = weather.getWeatherData()
+    await getLocation()
+
+    if (location.value) {
+      await weather.fetchWeatherData(location.value)
+      weatherData.value = weather.getWeatherData()
+    }
   })
 </script>
 
@@ -32,7 +46,7 @@
     class="container-custom-position grid h-[70%] w-[90%] grid-cols-2 gap-10"
   >
     <WeatherMap />
-    <CurrentDataCard v-if="weatherData" :weatherData="weatherData" />
+    <CurrentDataCard :weatherData="weatherData" />
   </section>
 </template>
 
