@@ -11,6 +11,7 @@
   const weather = new Weather()
   const location: Ref<string | null> = ref(null)
   const weatherData: Ref<WeatherData | null> = ref(null)
+  const isLoading: Ref<boolean> = ref(true)
 
   const getLocation = async () => {
     try {
@@ -35,13 +36,17 @@
     if (location.value) {
       await weather.fetchWeatherData(location.value)
       weatherData.value = weather.getWeatherData()
+      isLoading.value = false
+      return
     }
+
+    isLoading.value = false
   })
 </script>
 
 <template>
   <SearchBar @change-location="changeLocation" />
-  <CurrentDataCard :weatherData="weatherData" />
+  <CurrentDataCard :isLoading :weatherData />
 </template>
 
 <style scoped></style>
