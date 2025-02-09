@@ -2,7 +2,6 @@
   import { ref, watch, onMounted } from 'vue'
   import SearchBar from '@components/SearchBar.vue'
   import CurrentDataCard from '@components/CurrentDataCard.vue'
-  import WeatherMap from '@components/WeatherMap.vue'
   import Weather from '@services/Weather.ts'
   import getLocalLocation from '@modules/getLocalLocation.ts'
 
@@ -42,17 +41,7 @@
 
 <template>
   <SearchBar @change-location="changeLocation" />
-  <section
-    class="container-custom-position grid h-[70%] w-[90%] grid-cols-2 gap-10"
-  >
-    <WeatherMap />
-    <CurrentDataCard :weatherData="weatherData" />
-  </section>
+  <CurrentDataCard :weatherData="weatherData" />
 </template>
 
-<style scoped>
-  .container-custom-position {
-    @apply absolute top-[8rem] left-1/2;
-    transform: translate(-50%, 0);
-  }
-</style>
+<style scoped></style>

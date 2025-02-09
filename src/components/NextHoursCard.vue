@@ -17,17 +17,11 @@
 
 <template>
   <div
-    class="bg-secondary-hover mb-6 flex h-full min-w-[18%] flex-col items-center justify-between rounded-md"
+    class="bg-secondary-hover mb-6 flex h-full min-w-[90px] flex-col items-center justify-between rounded-md"
   >
-    <h1 class="text-xl">{{ props.datetime.slice(0, 5) }}hs.</h1>
-    <h1 class="flex text-sm gap-1">
-      <v-icon name="bi-cloud-rain-fill" size="2" />
-      {{ props.rainProbability }}%
-    </h1>
-    <h1 class="flex text-sm gap-1">
-      <v-icon name="fa-temperature-high" size="2" />
-      {{ props.temperature }} °C
-    </h1>
+    <h1 class="text-lg">{{ props.datetime.slice(0, 5) }}</h1>
+    <h1 class="flex text-2xl font-bold gap-1">{{ props.temperature }}°</h1>
+    <h1 class="flex text-xl gap-1">{{ props.rainProbability }}%</h1>
   </div>
 </template>
 

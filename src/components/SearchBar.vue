@@ -20,7 +20,7 @@
 
 <template>
   <section
-    class="searchbar-custom-position bg-secondary flex h-20 w-[90%] items-center justify-around rounded-md shadow-lg shadow-black/45"
+    class="searchbar-custom-position bg-secondary flex h-20 w-[80%] items-center justify-around rounded-md shadow-lg shadow-black/45"
   >
     <form
       class="flex w-[50%] items-center justify-center gap-2"

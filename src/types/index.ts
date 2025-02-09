@@ -3,6 +3,7 @@ export type WeatherData = {
   windspeed: number
   rainProbability: number
   weather: string
+  location: string
   currentHours: HourData[]
 }
 

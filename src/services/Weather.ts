@@ -42,6 +42,7 @@ class Weather {
         windspeed: json.currentConditions.windspeed,
         rainProbability: json.currentConditions.precipprob,
         weather: json.currentConditions.conditions,
+        location: json.resolvedAddress,
         currentHours: json.days[0].hours.map((hour: any) => ({
           datetime: hour.datetime,
           precipprob: hour.precipprob,

@@ -7,6 +7,7 @@ import {
   BiCloudRainFill,
   BiWind,
   WiDaySunnyOvercast,
+  CoLocationPin,
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -14,7 +15,8 @@ addIcons(
   FaTemperatureHigh,
   BiCloudRainFill,
   BiWind,
-  WiDaySunnyOvercast
+  WiDaySunnyOvercast,
+  CoLocationPin
 )
 
 const app = createApp(App)
