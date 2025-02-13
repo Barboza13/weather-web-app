@@ -27,7 +27,7 @@
       @submit="handleSubmit"
     >
       <input
-        class="text-primary hover:border-primary focus:border-primary h-10 w-full rounded-sm border-[1px] border-gray-500 bg-transparent outline-none placeholder:px-2 placeholder:text-gray-500"
+        class="text-primary hover:border-primary focus:border-primary h-10 w-full rounded-sm border-[1px] border-gray-500 bg-transparent outline-none placeholder:px-2 placeholder:text-gray-500 px-2"
         v-model="newLocation"
         type="search"
         placeholder="Enter a location to search..."
