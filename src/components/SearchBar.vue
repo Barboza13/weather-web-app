@@ -23,7 +23,7 @@
     class="searchbar-custom-position bg-secondary flex h-20 w-[80%] items-center justify-around rounded-md shadow-lg shadow-black/45"
   >
     <form
-      class="flex w-[50%] items-center justify-center gap-2"
+      class="flex w-[80%] lg:w-[50%] items-center justify-center gap-2"
       @submit="handleSubmit"
     >
       <input

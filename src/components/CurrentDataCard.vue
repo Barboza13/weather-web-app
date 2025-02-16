@@ -53,10 +53,10 @@
       class="flex flex-col justify-between items-center text-primary gap-2 h-full w-full"
     >
       <h1 class="text-3xl">Datos actuales</h1>
-      <div class="flex items-center justify-between w-full px-10">
+      <div class="flex items-center justify-between w-full px-5 md:px-10">
         <div class="flex items-center gap-1">
           <v-icon name="co-location-pin" scale="1.5" />
-          <h1 class="text-xl">{{ currentLocation }}</h1>
+          <h1 class="text-lg md:text-xl">{{ currentLocation }}</h1>
         </div>
         <ul class="flex flex-col justify-center gap-4">
           <li
@@ -65,7 +65,7 @@
             class="flex gap-2"
           >
             <v-icon :name="data.iconName" scale="1.5" />
-            <h3 class="text-primary text-xl">{{ data.value }}</h3>
+            <h3 class="text-primary text-lg md:text-xl">{{ data.value }}</h3>
           </li>
         </ul>
       </div>
