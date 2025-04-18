@@ -26,8 +26,12 @@
     (location.value = newLocation)
 
   watch(location, async () => {
-    await weather.fetchWeatherData(location.value)
-    weatherData.value = weather.getWeatherData()
+    try {
+      await weather.fetchWeatherData(location.value)
+      weatherData.value = weather.getWeatherData()
+    } catch (error) {
+      console.error(error)
+    }
   })
 
   onMounted(async () => {

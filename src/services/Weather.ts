@@ -11,7 +11,7 @@ class Weather {
   }
 
   /**
-   * Get weather data.
+   * @description Get weather data.
    * @returns {WeatherData} weather data.
    */
   getWeatherData(): WeatherData {
@@ -19,8 +19,8 @@ class Weather {
   }
 
   /**
-   * Fetch weather data.
-   * @param location
+   * @description Fetch weather data from API.
+   * @param {string | null} location
    */
   async fetchWeatherData(location: string | null): Promise<void> {
     if (!location) alert('¡No se pudo obtener tu ubicacion!')
@@ -32,7 +32,7 @@ class Weather {
 
       if (!response.ok) {
         const json = await response.json()
-        throw new Error(`Error: ${json}`)
+        return Promise.reject(json)
       }
 
       const json = await response.json()
@@ -50,7 +50,7 @@ class Weather {
         })),
       }
     } catch (error) {
-      console.error('Error: ', error)
+      return Promise.reject(error)
     }
   }
 }

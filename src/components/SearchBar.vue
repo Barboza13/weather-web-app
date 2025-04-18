@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import type { Ref } from 'vue'
 
-  const emit = defineEmits(['changeLocation'])
+  const emits = defineEmits(['changeLocation'])
   const newLocation: Ref<string> = ref('')
 
   const handleSubmit = (e: Event) => {
@@ -13,7 +13,7 @@
       return
     }
 
-    emit('changeLocation', newLocation.value)
+    emits('changeLocation', newLocation.value)
     newLocation.value = ''
   }
 </script>
