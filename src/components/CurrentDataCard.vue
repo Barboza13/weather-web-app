@@ -7,6 +7,7 @@
   type Props = {
     weatherData: WeatherData | null
     isLoading: boolean
+    geoLocationErrorMessage: string
   }
 
   const props = defineProps<Props>()
@@ -38,18 +39,19 @@
 
 <template>
   <section
-    v-if="props.isLoading"
-    class="container-custom-position bg-secondary flex justify-center items-center h-[70%] w-[80%] rounded-md shadow-lg shadow-black/45"
+    class="absolute top-[8rem] left-1/2 -translate-x-1/2 bg-secondary h-[70%] w-[80%] border-[1px] border-secondary-hover rounded-md shadow-lg shadow-black/45 p-3"
   >
-    <v-icon name="ri-loader-4-line" fill="white" animation="spin" scale="5" />
-  </section>
+    <v-icon
+      v-if="props.isLoading"
+      class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+      name="ri-loader-2-fill"
+      fill="white"
+      animation="spin"
+      scale="5"
+    />
 
-  <section
-    v-else
-    class="container-custom-position bg-secondary h-[70%] w-[80%] rounded-md shadow-lg shadow-black/45"
-  >
     <div
-      v-if="weatherData"
+      v-if="props.weatherData && !props.isLoading"
       class="flex flex-col justify-between items-center text-primary gap-2 h-full w-full"
     >
       <h1 class="text-3xl">Datos actuales</h1>
@@ -84,22 +86,23 @@
           />
           <h1
             v-else
-            class="absolute left-[50%] top-[50%] -translate-x-[50%] -translate-y-[50%]"
+            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
           >
             N/A
           </h1>
         </div>
       </div>
     </div>
-    <div v-else class="flex justify-center items-center h-full w-full">
-      <h1 class="text-red-500 text-xl">¡Error al obtener los datos!</h1>
+    <div
+      v-else-if="!props.weatherData && !props.isLoading"
+      class="flex flex-col justify-center items-center h-full w-full text-red-500 text-xl"
+    >
+      <p>¡Error al obtener los datos!</p>
+      <p>
+        {{ props.geoLocationErrorMessage ?? '' }}
+      </p>
     </div>
   </section>
 </template>
 
-<style scoped>
-  .container-custom-position {
-    @apply absolute top-[8rem] left-1/2;
-    transform: translate(-50%, 0);
-  }
-</style>
+<style scoped></style>

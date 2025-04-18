@@ -11,6 +11,7 @@
   const weather = new Weather()
   const location: Ref<string | null> = ref(null)
   const weatherData: Ref<WeatherData | null> = ref(null)
+  const geoLocationErrorMessage: Ref<string> = ref('')
   const isLoading: Ref<boolean> = ref(true)
 
   const getLocation = async () => {
@@ -18,7 +19,7 @@
       const { latitude, longitude } = await getLocalLocation()
       location.value = `${latitude}, ${longitude}`
     } catch (error) {
-      console.error(error) // Then handle the error.
+      geoLocationErrorMessage.value = String(error)
     }
   }
 
@@ -50,7 +51,11 @@
 
 <template>
   <SearchBar @change-location="changeLocation" />
-  <CurrentDataCard :isLoading :weatherData />
+  <CurrentDataCard
+    :isLoading
+    :weatherData
+    :geo-location-error-message="geoLocationErrorMessage"
+  />
 </template>
 
 <style scoped></style>

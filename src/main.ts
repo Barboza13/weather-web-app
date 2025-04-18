@@ -8,7 +8,7 @@ import {
   BiWind,
   WiDaySunnyOvercast,
   CoLocationPin,
-  RiLoader4Line,
+  RiLoader2Fill,
 } from 'oh-vue-icons/icons'
 
 addIcons(
@@ -18,7 +18,7 @@ addIcons(
   BiWind,
   WiDaySunnyOvercast,
   CoLocationPin,
-  RiLoader4Line
+  RiLoader2Fill
 )
 
 const app = createApp(App)
