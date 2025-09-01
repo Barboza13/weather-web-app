@@ -7,7 +7,7 @@
   type Props = {
     weatherData: WeatherData | null
     isLoading: boolean
-    geoLocationErrorMessage: string
+    errorMessage: string
   }
 
   const props = defineProps<Props>()
@@ -99,7 +99,7 @@
     >
       <p>¡Error al obtener los datos!</p>
       <p>
-        {{ props.geoLocationErrorMessage ?? '' }}
+        {{ props.errorMessage ?? '' }}
       </p>
     </div>
   </section>

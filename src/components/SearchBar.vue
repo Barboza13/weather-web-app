@@ -32,7 +32,7 @@
         required
       />
       <button
-        class="hover:bg-secondary-hover hover:text-primary focus:text-primary flex h-12 w-13 cursor-pointer items-center justify-center rounded-full text-gray-500 transition-colors duration-200 ease-linear outline-none"
+        class="hover:bg-secondary-hover focus:bg-secondary-hover hover:text-primary focus:text-primary flex h-12 w-16 lg:w-13 cursor-pointer items-center justify-center rounded-full text-gray-500 transition-colors duration-200 ease-linear outline-none"
         type="submit"
       >
         <v-icon name="md-search" scale="1.5" />

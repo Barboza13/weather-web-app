@@ -31,8 +31,8 @@ class Weather {
       )
 
       if (!response.ok) {
-        const json = await response.json()
-        return Promise.reject(json)
+        const errorText = await response.text()
+        return Promise.reject(errorText)
       }
 
       const json = await response.json()

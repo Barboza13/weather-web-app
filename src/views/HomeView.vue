@@ -11,7 +11,7 @@
   const weather = new Weather()
   const location: Ref<string | null> = ref(null)
   const weatherData: Ref<WeatherData | null> = ref(null)
-  const geoLocationErrorMessage: Ref<string> = ref('')
+  const errorMessage: Ref<string> = ref('')
   const isLoading: Ref<boolean> = ref(true)
 
   const getLocation = async () => {
@@ -19,7 +19,7 @@
       const { latitude, longitude } = await getLocalLocation()
       location.value = `${latitude}, ${longitude}`
     } catch (error) {
-      geoLocationErrorMessage.value = String(error)
+      errorMessage.value = String(error)
     }
   }
 
@@ -27,12 +27,17 @@
     (location.value = newLocation)
 
   watch(location, async () => {
+    isLoading.value = true
+
     try {
       await weather.fetchWeatherData(location.value)
       weatherData.value = weather.getWeatherData()
     } catch (error) {
-      console.error(error)
+      weatherData.value = null
+      errorMessage.value = '¡Locación no encontada!'
     }
+
+    isLoading.value = false
   })
 
   onMounted(async () => {
@@ -51,11 +56,7 @@
 
 <template>
   <SearchBar @change-location="changeLocation" />
-  <CurrentDataCard
-    :isLoading
-    :weatherData
-    :geo-location-error-message="geoLocationErrorMessage"
-  />
+  <CurrentDataCard :isLoading :weatherData :error-message="errorMessage" />
 </template>
 
 <style scoped></style>
